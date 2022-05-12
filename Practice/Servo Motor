@@ -19,16 +19,6 @@ int pos = 0;    // servo starting position
 void setup() {
    Serial.begin(9600);
    servo_1.attach(servo_pin);
-
-//   // configure LED PWM functionalitites
-//  ledcSetup(pwmChannel, freq, resolution);
-//  
-//  // attach the channel to the GPIO to be controlled
-//  ledcAttachPin(fanPWMPin, pwmChannel);
-//   
-//   pinMode(fanPWMPin, OUTPUT);
-//   pinMode(fanMotor1, OUTPUT);
-//   pinMode(fanMotor2, OUTPUT);
 }
 
 void loop() {
@@ -62,18 +52,4 @@ void loop() {
   }
   delay(5000); // wait 5 seconds after arriving back at 0 degrees
 
-//  // Fan Work
-//  // Moving fan in backward direction
-//  digitalWrite(fanMotor1, HIGH);
-//  digitalWrite(fanMotor2, LOW);
-//
-//  if (dutyCycle >= 255) {
-//    dutyCycle = 150;
-//  }
-//
-//  ledcWrite(pwmChannel, dutyCycle);
-//  Serial.println("DutyCycle: ");
-//  Serial.print(dutyCycle);
-//  delay(5000);
-//  dutyCycle += 50;
 }
