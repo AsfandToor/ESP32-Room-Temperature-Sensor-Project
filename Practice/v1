@@ -1,0 +1,46 @@
+#include <Servo.h>
+
+float temp;
+int tempPin = 15;
+int fanPin=4;
+Servo servo_1; // servo controller (multiple can exist)
+
+int servo_pin = 2; // PWM pin for servo control
+int pos = 0;    // servo starting position
+void setup() {
+   Serial.begin(9600);
+   servo_1.attach(servo_pin);
+   pinMode(fanPin,OUTPUT);
+}
+
+void loop() {
+   digitalWrite(fanPin, HIGH);
+   temp = analogRead(tempPin);
+   // read analog volt from sensor and save to variable temp
+   temp = temp * 0.48828125;
+   // convert the analog volt to its temperature equivalent
+   Serial.print("TEMPERATURE = ");
+   Serial.print(temp); // display temperature value
+   Serial.print("*F");
+   Serial.println();
+   delay(1000); // update sensor reading each one second
+   //Servo Work
+   for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    servo_1.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15); // delay to allow the servo to reach the desired position
+    if (pos==90){
+      delay(5000); //wait 5 seconds once positioned at 90 degrees
+    }
+  }
+  delay(5000); // wait 5 seconds after reaching 180 degrees
+ 
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    servo_1.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);
+    if (pos==90){
+      delay(5000); // wait 5 seconds once positioned at 90 degrees
+    }
+  }
+  delay(5000); // wait 5 seconds after arriving back at 0 degrees
+}
