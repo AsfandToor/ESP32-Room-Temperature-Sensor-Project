@@ -118,8 +118,6 @@ void setup() {
 // Code For Task 1
 void Task1code( void * pvParameters ){
   const TickType_t xDelay = 500; // Setting Tick Delay to 500ms to Avoid Watchdog
-  Serial.print("Task1 running on core ");
-  Serial.println(xPortGetCoreID()); // Printing Task Core
  
   for(;;){ // Infinite Loop works like void loop()
     temp = analogRead(tempPin); // Reading Analogue Tmep Value
@@ -172,9 +170,7 @@ void Task1code( void * pvParameters ){
 // Code For Task 2
 void Task2code( void * pvParameters ){
   const TickType_t xDelay = 3000; // Setting Tick Delay to 3000ms
-  Serial.print("Task2 running on core ");
-  Serial.println(xPortGetCoreID());
-
+  
   for(;;){
     fetchData();
     vTaskDelay( xDelay );
